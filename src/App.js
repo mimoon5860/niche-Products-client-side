@@ -6,20 +6,26 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Error from './Pages/Error/Error';
+import BuyProduct from './Pages/BuyProduct/BuyProduct';
+import AuthProvider from './useContext/AuthProvidor/AuthProvidor';
+import PrivateRoute from './Shared/PrivateRoute/PrivateRoute';
 
 function App() {
 
   return (
     <BrowserRouter className='default-css'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/home/' element={<Home />} />
-        <Route path='/allproducts/' element={<AllProducts />} />
-        <Route path='/login/' element={<Login />} />
-        <Route path='/register/' element={<Register />} />
-        <Route path='/dashboard/*' element={<Dashboard />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/home/' element={<Home />} />
+          <Route path='/allproducts/' element={<AllProducts />} />
+          <Route path='/login/' element={<Login />} />
+          <Route path='/register/' element={<Register />} />
+          <Route path='/dashboard/*' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path='/buyproduct/:id' element={<PrivateRoute><BuyProduct /></PrivateRoute>} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter >
   );
 }

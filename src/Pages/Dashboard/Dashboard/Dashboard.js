@@ -107,7 +107,7 @@ function Dashboard(props) {
                     </ListItem>
                 </Link>
                 <Divider />
-                <Button sx={{ ml: 6, my: 2, fontWeight: "bold" }}> <LogoutIcon /> Logout</Button>
+                <Button sx={{ mx: 6, my: 2, fontWeight: "bold" }}> <LogoutIcon /> Logout</Button>
             </List>
         </div>
     );

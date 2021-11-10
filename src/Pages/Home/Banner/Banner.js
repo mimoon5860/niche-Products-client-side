@@ -10,7 +10,8 @@ const Banner = () => {
         backgroundSize: 'cover',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         backgroundBlendMode: 'darken, luminosity',
-        color: 'white'
+        color: 'white',
+        marginTop: '8px'
 
     }
 

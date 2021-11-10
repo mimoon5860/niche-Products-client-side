@@ -9,17 +9,17 @@ import {
     useMediaQuery,
     Container,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
-import HomeIcon from '@mui/icons-material/Home';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from "react-router-dom";
 import DrawerComponent from "./NavDrawer";
+import useAuth from "../../useContext/useAuth/useAuth";
 
 const useStyles = makeStyles((theme) => ({
     navlinks: {
         marginLeft: theme.spacing(5),
         display: "flex",
+        alignItems: 'center'
     },
     logo: {
         flexGrow: "1",
@@ -27,9 +27,12 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         textDecoration: "none",
+        border: '1px solid transparent',
+        background: 'none',
         color: "white",
+        cursor: 'pointer',
         fontSize: "20px",
-        marginRight: theme.spacing(5),
+        marginLeft: theme.spacing(5),
         "&:hover": {
             color: "yellow",
             borderBottom: "1px solid white",
@@ -39,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Navigation = () => {
+    const { user, logOut } = useAuth();
+    console.log(user)
     const classes = useStyles();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -47,34 +52,48 @@ const Navigation = () => {
             <Container>
                 <CssBaseline />
                 <Toolbar>
-                    <Typography variant="h4" className={classes.logo}>
-                        Navbar
+                    <Typography style={{ fontFamily: "'Satisfy', cursive", fontWeight: 'bold' }} variant="h4" className={classes.logo}>
+                        Time Style
                     </Typography>
                     {isMobile ? (
                         <DrawerComponent />
                     ) : (
                         <div className={classes.navlinks}>
-                            <HomeIcon />
+                            {
+                                user.email
+                                &&
+                                <Typography>Hi, {user.displayName}</Typography>
+                            }
                             <Link to="/" className={classes.link}>
                                 Home
                             </Link>
-                            <ShoppingBasketIcon />
                             <Link to="/allproducts" className={classes.link}>
                                 All Products
                             </Link>
-                            <DashboardIcon />
-                            <Link to="/dashboard" className={classes.link}>
-                                Dashboard
-                            </Link>
-                            <LoginIcon />
-                            <Link to="/login" className={classes.link}>
-                                Login
-                            </Link>
+                            {
+                                user.email
+                                &&
+                                <Link to="/dashboard" className={classes.link}>
+                                    Dashboard
+                                </Link>
+                            }
+
+                            {
+                                user.email
+                                    ?
+                                    <button style={{ display: 'flex', alignItems: 'center' }} className={classes.link} onClick={logOut}><LogoutIcon /> Logout</button>
+                                    :
+
+                                    <Link style={{ display: 'flex', alignItems: 'center' }} to="/login" className={classes.link}>
+                                        <LoginIcon /> Login
+                                    </Link>
+                            }
+
                         </div>
                     )}
                 </Toolbar>
             </Container>
-        </AppBar>
+        </AppBar >
     );
 };
 
