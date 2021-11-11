@@ -14,14 +14,14 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginIcon from '@mui/icons-material/Login';
-import ReviewsIcon from '@mui/icons-material/Reviews';
 import useAuth from "../../useContext/useAuth/useAuth";
 
 
-const link = {
+const btnStyle = {
     textDecoration: "none",
     color: "black"
 }
@@ -45,7 +45,7 @@ const NavDrawer = () => {
                 }
                 <Divider />
                 <List>
-                    <Link style={link} to='/'>
+                    <Link style={btnStyle} to='/'>
                         <ListItem button >
                             <ListItemIcon>
                                 <HomeIcon />
@@ -57,7 +57,7 @@ const NavDrawer = () => {
                     {
                         user.email
                         &&
-                        <Link style={link} to='/dashboard'>
+                        <Link style={btnStyle} to='/dashboard'>
                             <ListItem button >
                                 <ListItemIcon>
                                     <DashboardIcon />
@@ -67,7 +67,7 @@ const NavDrawer = () => {
                         </Link>
                     }
 
-                    <Link style={link} to='/allproducts'>
+                    <Link style={btnStyle} to='/allproducts'>
                         <ListItem button >
                             <ListItemIcon>
                                 <ShoppingCartIcon />
@@ -79,14 +79,24 @@ const NavDrawer = () => {
                     {
                         !user.email
                         &&
-                        <Link style={link} to='/login'>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <LoginIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"Login"} />
-                            </ListItem>
-                        </Link>
+                        <>
+                            <Link style={btnStyle} to='/register'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <VpnKeyIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Register"} />
+                                </ListItem>
+                            </Link>
+                            <Link style={btnStyle} to='/login'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <LoginIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Login"} />
+                                </ListItem>
+                            </Link>
+                        </>
                     }
 
                     <Divider />

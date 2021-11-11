@@ -7,12 +7,14 @@ import Loading from '../Loading/Loading';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { Alert } from '@mui/material';
+import useAuth from '../../useContext/useAuth/useAuth';
 
 
 const ModalForm = ({ open, handleClose, id }) => {
     const { register, handleSubmit, reset } = useForm();
     const [verifyLoading, setVerifyLoading] = useState(false);
     const [orderSuccess, setOrderSuccess] = useState(false);
+    const { user } = useAuth();
 
     const onSubmit = (data) => {
         setVerifyLoading(true);
@@ -75,7 +77,7 @@ const ModalForm = ({ open, handleClose, id }) => {
                         :
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <TextField required style={inputField} type='text' {...register("name")} id="standard-basic" label="Name" variant="standard" />
-                            <TextField required style={inputField} type='email' {...register("email")} id="standard-basic" label="Email" variant="standard" />
+                            <TextField required value={user.email} style={inputField} type='email' {...register("email")} id="standard-basic" label="Email" variant="standard" />
                             <TextField required style={inputField} type='text' {...register("number")} id="standard-basic" label="Number" variant="standard" />
                             <TextField required style={inputField} type='text' {...register("address")} id="standard-basic" label="Address" variant="standard" />
                             <br />

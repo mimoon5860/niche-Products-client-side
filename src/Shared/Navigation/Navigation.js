@@ -12,6 +12,7 @@ import {
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import DrawerComponent from "./NavDrawer";
 import useAuth from "../../useContext/useAuth/useAuth";
 
@@ -84,9 +85,14 @@ const Navigation = () => {
                                     <button style={{ display: 'flex', alignItems: 'center' }} className={classes.link} onClick={logOut}><LogoutIcon /> Logout</button>
                                     :
 
-                                    <Link style={{ display: 'flex', alignItems: 'center' }} to="/login" className={classes.link}>
-                                        <LoginIcon /> Login
-                                    </Link>
+                                    <>
+                                        <Link style={{ display: 'flex', alignItems: 'center' }} to="/register" className={classes.link}>
+                                            <VpnKeyIcon /> Register
+                                        </Link>
+                                        <Link style={{ display: 'flex', alignItems: 'center' }} to="/login" className={classes.link}>
+                                            <LoginIcon /> Login
+                                        </Link>
+                                    </>
                             }
 
                         </div>

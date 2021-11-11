@@ -28,15 +28,19 @@ import Payments from '../Payments/Payments';
 import Reviews from '../Reviews/Reviews';
 import AllOrders from '../AllOrders/AllOrders';
 import ManageProducts from '../ManageProducts/ManageProducts';
+import useAuth from '../../../useContext/useAuth/useAuth';
+import DashBoardContent from '../DashBoardContent/DashBoardContent';
+import AdminRoute from '../../../Shared/AdminRoute/AdminRoute';
 
 const drawerWidth = 200;
 
-const link = {
+const linkStyle = {
     textDecoration: "none",
     color: "black"
 }
 
 function Dashboard(props) {
+    const { role, logOut } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -46,10 +50,12 @@ function Dashboard(props) {
 
     const drawer = (
         <div>
-            <Toolbar />
+            <Typography style={{ fontFamily: "'Satisfy', cursive", textAlign: 'center', margin: '20px 0' }} variant='h4'>
+                Time Style
+            </Typography>
             <Divider />
             <List>
-                <Link style={link} to='/'>
+                <Link style={linkStyle} to='/'>
                     <ListItem button >
                         <ListItemIcon>
                             <HomeIcon />
@@ -57,57 +63,71 @@ function Dashboard(props) {
                         <ListItemText primary={"Home"} />
                     </ListItem>
                 </Link>
-                <Link style={link} to='/dashboard/'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <ShoppingCartIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"My Order"} />
-                    </ListItem>
-                </Link>
-                <Link style={link} to='/dashboard/payments'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <PaymentIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Pay"} />
-                    </ListItem>
-                </Link>
-                <Link style={link} to='/dashboard/review'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <ReviewsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Review"} />
-                    </ListItem>
-                </Link>
+
+                {
+                    role.admin
+                        ?
+                        <Box>
+                            <Link style={linkStyle} to='/dashboard/allorder'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <ShoppingCartIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Manage All Order"} />
+                                </ListItem>
+                            </Link>
+                            <Link style={linkStyle} to='/dashboard/manageproducts'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <AddBusinessIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Manage Products"} />
+                                </ListItem>
+                            </Link>
+                            <Link style={linkStyle} to='/dashboard/admin'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <ManageAccountsIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Make Admin"} />
+                                </ListItem>
+                            </Link>
+                        </Box>
+                        :
+                        <Box>
+                            <Link style={linkStyle} to='/dashboard/myorder'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <ShoppingCartIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"My Order"} />
+                                </ListItem>
+                            </Link>
+                            <Link style={linkStyle} to='/dashboard/payments'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <PaymentIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Pay"} />
+                                </ListItem>
+                            </Link>
+                            <Link style={linkStyle} to='/dashboard/review'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <ReviewsIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Review"} />
+                                </ListItem>
+                            </Link>
+                        </Box>
+                }
+
+
+
                 <Divider />
-                <Link style={link} to='/dashboard/allorder'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <ShoppingCartIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Manage All Order"} />
-                    </ListItem>
-                </Link>
-                <Link style={link} to='/dashboard/manageproducts'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <AddBusinessIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Manage Products"} />
-                    </ListItem>
-                </Link>
-                <Link style={link} to='/dashboard/admin'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <ManageAccountsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Make Admin"} />
-                    </ListItem>
-                </Link>
+
                 <Divider />
-                <Button sx={{ mx: 6, my: 2, fontWeight: "bold" }}> <LogoutIcon /> Logout</Button>
+                <Button onClick={logOut} sx={{ mx: 6, my: 2, fontWeight: "bold" }}> <LogoutIcon /> Logout</Button>
             </List>
         </div>
     );
@@ -134,8 +154,8 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Responsive drawer
+                    <Typography style={{ textAlign: 'center' }} variant="h6" noWrap component="div">
+                        Time Style
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -177,13 +197,15 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Routes>
-                    <Route path="/*" element={<MyOrders />} />
-                    <Route path="manage" element={<MyOrders />} />
+                    <Route path="/*" element={<DashBoardContent />} />
+
+                    <Route path="myorder" element={<MyOrders />} />
                     <Route path="payments" element={<Payments />} />
                     <Route path="review" element={<Reviews />} />
-                    <Route path="allorder" element={<AllOrders />} />
-                    <Route path="manageproducts" element={<ManageProducts />} />
-                    <Route path="admin" element={<AdminPanel />} />
+
+                    <Route path="allorder" element={<AdminRoute><AllOrders /></AdminRoute>} />
+                    <Route path="manageproducts" element={<AdminRoute><ManageProducts /></AdminRoute>} />
+                    <Route path="admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
                 </Routes>
             </Box>
         </Box>
@@ -192,39 +214,3 @@ function Dashboard(props) {
 
 
 export default Dashboard;
-
-
-
-
-
-/* <Routes>
-    <Route path="/" element={<DashboardContent />} />
-    <Route path="admin" element={<AdminPanel />} />
-</Routes>
-
-<List>
-                <Link style={link} to='/'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Home"} />
-                    </ListItem>
-                </Link>
-                <Link style={link} to='/dashboard'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <DashboardIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Dashboard"} />
-                    </ListItem>
-                </Link>
-                <Link style={link} to='/dashboard/admin'>
-                    <ListItem button >
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={"Admin"} />
-                    </ListItem>
-                </Link>
-            </List> */

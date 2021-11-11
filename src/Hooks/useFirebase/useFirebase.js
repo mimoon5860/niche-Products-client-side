@@ -12,6 +12,8 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const [adminLoading, setAdminLoading] = useState(true);
+    const [role, setRole] = useState({});
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
 
@@ -105,6 +107,19 @@ const useFirebase = () => {
     }, [])
 
 
+    // Get Admin from database 
+    useEffect(() => {
+        setAdminLoading(true);
+        axios.get(`http://localhost:5000/user/${user.email}`)
+            .then(res => {
+                setRole(res.data);
+                setAdminLoading(false);
+            }).finally(() => {
+                setAdminLoading(false);
+            })
+    }, [user.email])
+
+
     // Logout user 
     const logOut = () => {
         signOut(auth).then(() => {
@@ -146,6 +161,8 @@ const useFirebase = () => {
         emailSignUp,
         loginWithEmail,
         loading,
+        adminLoading,
+        role,
         setError
     }
 }

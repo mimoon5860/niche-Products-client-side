@@ -2,16 +2,23 @@ import { Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Loading from '../../../Shared/Loading/Loading';
+import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationModal';
 import useAuth from '../../../useContext/useAuth/useAuth';
 
 const AdminPanel = () => {
     const { user } = useAuth();
-    const [verifyLoading, setVerifyLoading] = useState(false);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [email, setEmail] = useState('');
 
     const onSubmit = (data) => {
-        console.log(data)
+        setEmail(data.email);
+        if (data.confirm === 'confirm') {
+            handleOpen();
+            reset();
+        }
     };
 
     const inputField = {
@@ -41,17 +48,17 @@ const AdminPanel = () => {
                 <Grid sx={{ mx: 'auto' }} style={form} item xs={12} md={4}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <TextField required style={inputField} type='email' {...register("email")} id="standard-basic" label="Email" variant="standard" />
-                        <TextField required style={inputField} type='password' {...register("confirm")} id="standard-basic" label="Type 'confirm'" variant="standard" />
+                        <TextField required style={inputField} type='text' {...register("confirm")} id="standard-basic" label="Type 'confirm'" variant="standard" />
                         <br />
-                        {
-                            verifyLoading ? <Loading />
-                                :
-                                <input style={button} type="submit" value="Make Admin" />
-                        }
-
+                        <small>
+                            You have to type 'confirm' here to make an admin.
+                        </small>
+                        <br />
+                        <input style={button} type="submit" value="Make Admin" />
                     </form>
                 </Grid>
             </Grid>
+            <ConfirmationModal open={open} handleClose={handleClose} adminWillEmail={email} />
         </Box>
     );
 };
