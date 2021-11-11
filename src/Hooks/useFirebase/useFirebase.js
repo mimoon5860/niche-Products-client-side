@@ -110,7 +110,7 @@ const useFirebase = () => {
     // Get Admin from database 
     useEffect(() => {
         setAdminLoading(true);
-        axios.get(`https://tranquil-forest-55294.herokuapp.com/${user.email}`)
+        axios.get(`https://tranquil-forest-55294.herokuapp.com/user/${user.email}`)
             .then(res => {
                 setRole(res.data);
                 setAdminLoading(false);

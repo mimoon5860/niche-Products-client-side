@@ -50,6 +50,7 @@ function Dashboard(props) {
 
     const drawer = (
         <div>
+            <Toolbar />
             <Typography style={{ fontFamily: "'Satisfy', cursive", textAlign: 'center', margin: '20px 0' }} variant='h4'>
                 Time Style
             </Typography>
@@ -121,11 +122,7 @@ function Dashboard(props) {
                             </Link>
                         </Box>
                 }
-
-
-
                 <Divider />
-
                 <Divider />
                 <Button onClick={logOut} sx={{ mx: 6, my: 2, fontWeight: "bold" }}> <LogoutIcon /> Logout</Button>
             </List>

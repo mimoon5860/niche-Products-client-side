@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = () => {
     const { user, logOut } = useAuth();
-    console.log(user)
     const classes = useStyles();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

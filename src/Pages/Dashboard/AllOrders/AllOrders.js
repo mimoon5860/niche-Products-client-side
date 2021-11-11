@@ -17,7 +17,7 @@ const AllOrders = () => {
     const handleDelete = (id) => {
         const confirm = window.confirm('Are you sure?');
         if (confirm) {
-            axios.delete(`https://tranquil-forest-55294.herokuapp.com/${id}`)
+            axios.delete(`https://tranquil-forest-55294.herokuapp.com/orders/${id}`)
                 .then(res => {
                     console.log(res.data)
                     if (res.data.deletedCount > 0) {
@@ -31,7 +31,7 @@ const AllOrders = () => {
     }
 
     const handleUpdate = (id, newStatus) => {
-        axios.put(`https://tranquil-forest-55294.herokuapp.com/${id}`, { status: newStatus })
+        axios.put(`https://tranquil-forest-55294.herokuapp.com/orders/${id}`, { status: newStatus })
             .then(res => {
                 console.log(res.data);
                 alert('Updated');

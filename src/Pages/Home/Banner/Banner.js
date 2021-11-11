@@ -27,21 +27,21 @@ const Banner = () => {
     return (
         <div style={bannerBg}>
             <Container>
-                <Grid container justify="center" spacing={2}>
+                <Grid container justifyContent="center" spacing={2}>
                     <Grid item xs={12} md={6}>
                         <Box sx={{ pt: 6, textAlign: 'center' }}>
                             <Typography style={{ fontFamily: "'Satisfy', cursive", fontWeight: 'bold' }} variant='h2'>Time Style</Typography>
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid container justify="center" spacing={2}>
+                <Grid container justifyContent="center" spacing={2}>
                     <Grid item xs={12} md={6}>
                         <Box sx={{ pb: 6, textAlign: 'center' }}>
                             <Typography style={{ fontFamily: "'Cinzel', serif" }} variant="h4">Find your dream watch on the leading marketplace for luxury watches.</Typography>
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid container justify="center" spacing={2}>
+                <Grid container justifyContent="center" spacing={2}>
                     <Grid item xs={12} md={6} >
                         <Box sx={{ pb: 6, textAlign: 'center' }}>
                             <Link style={button} to='/allproducts'>Explore</Link>

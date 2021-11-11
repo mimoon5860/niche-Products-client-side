@@ -6,7 +6,6 @@ import { useParams } from 'react-router';
 import Loading from '../../Shared/Loading/Loading';
 import Divider from '@mui/material/Divider';
 import Navigation from '../../Shared/Navigation/Navigation';
-import Error from '../Error/Error';
 import ModalForm from '../../Shared/ModalForm/ModalForm';
 
 const BuyProduct = () => {
@@ -26,7 +25,7 @@ const BuyProduct = () => {
     }
 
     useEffect(() => {
-        const url = `https://tranquil-forest-55294.herokuapp.com/${id}`;
+        const url = `https://tranquil-forest-55294.herokuapp.com/product/${id}`;
         try {
             axios.get(url)
                 .then(product => {
@@ -86,7 +85,7 @@ const BuyProduct = () => {
                                         </Grid>
                                     </Grid>
                                     <Grid container spacing={2}>
-                                        <Grid style={{ padding: '15px 10px' }} xs={12}>
+                                        <Grid item style={{ padding: '15px 10px' }} xs={12}>
                                             <Typography style={{ textAlign: 'justify' }}>
                                                 <span style={{ color: '#EF4932', fontWeight: 'bold' }} >Details: </span> {details}
                                             </Typography>
@@ -94,7 +93,7 @@ const BuyProduct = () => {
                                     </Grid>
                                 </Container>
                                 :
-                                <Error />
+                                <Loading />
                         }
                     </div>
             }

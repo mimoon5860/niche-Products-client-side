@@ -8,8 +8,8 @@ const GetProducts = () => {
 
     useEffect(() => {
         axios.get('https://tranquil-forest-55294.herokuapp.com/products')
-            .then(products => {
-                setProducts(products.data);
+            .then(res => {
+                setProducts(res.data);
                 setLoading(false);
             })
     }, [])
