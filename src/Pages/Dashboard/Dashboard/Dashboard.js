@@ -25,12 +25,12 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import MyOrders from '../MyOrders/MyOrders';
 import Payments from '../Payments/Payments';
-import Reviews from '../Reviews/Reviews';
 import AllOrders from '../AllOrders/AllOrders';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import useAuth from '../../../useContext/useAuth/useAuth';
 import DashBoardContent from '../DashBoardContent/DashBoardContent';
 import AdminRoute from '../../../Shared/AdminRoute/AdminRoute';
+import AddReview from '../AddReview/AddReview';
 
 const drawerWidth = 200;
 
@@ -201,7 +201,7 @@ function Dashboard(props) {
 
                     <Route path="myorder" element={<MyOrders />} />
                     <Route path="payments" element={<Payments />} />
-                    <Route path="review" element={<Reviews />} />
+                    <Route path="review" element={<AddReview />} />
 
                     <Route path="allorder" element={<AdminRoute><AllOrders /></AdminRoute>} />
                     <Route path="manageproducts" element={<AdminRoute><ManageProducts /></AdminRoute>} />

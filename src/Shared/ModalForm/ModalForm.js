@@ -19,9 +19,9 @@ const ModalForm = ({ open, handleClose, id }) => {
     const onSubmit = (data) => {
         setVerifyLoading(true);
         const date = new Date();
-        const orderInfo = { ...data, productId: id, OrderDate: date.toLocaleDateString(), status: 'pending' }
+        const orderInfo = { ...data, productId: id, OrderDate: date.toLocaleDateString(), status: false }
 
-        axios.post('http://localhost:5000/orders', orderInfo)
+        axios.post('https://tranquil-forest-55294.herokuapp.com/orders', orderInfo)
             .then(res => {
                 if (res.data.insertedId) {
                     setVerifyLoading(false);

@@ -7,7 +7,7 @@ const GetProducts = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://tranquil-forest-55294.herokuapp.com/products')
             .then(products => {
                 setProducts(products.data);
                 setLoading(false);

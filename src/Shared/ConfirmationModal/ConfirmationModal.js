@@ -37,7 +37,7 @@ const ConfirmationModal = ({ open, handleClose, adminWillEmail }) => {
         setVerifyLoading(true);
         setError('');
         const adminWill = { newAdmin: adminWillEmail, admin: user.email };
-        axios.put('http://localhost:5000/user/admin', adminWill)
+        axios.put('https://tranquil-forest-55294.herokuapp.com/user/admin', adminWill)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     setOrderSuccess(true);

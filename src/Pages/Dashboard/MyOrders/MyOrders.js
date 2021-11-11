@@ -11,17 +11,32 @@ const MyOrders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios(`http://localhost:5000/orders?email=${user.email}`)
+        axios(`https://tranquil-forest-55294.herokuapp.com/orders?email=${user.email}`)
             .then(res => {
                 setOrders(res.data);
             })
     }, [user.email])
 
+    const handleDelete = (id) => {
+        const confirm = window.confirm('Are you sure?');
+        if (confirm) {
+            axios.delete(`https://tranquil-forest-55294.herokuapp.com/orders/${id}`)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.deletedCount > 0) {
+                        alert('Deleted');
+                        const restOrder = orders.filter(order => order._id !== id);
+                        setOrders(restOrder);
+                    }
+
+                })
+        }
+    }
     return (
         <Box>
             <Grid container spacing={2}>
                 {
-                    orders.map(order => <ShowOrders key={order._id} order={order} />)
+                    orders.map(order => <ShowOrders handleDelete={handleDelete} key={order._id} order={order} />)
                 }
             </Grid>
         </Box>

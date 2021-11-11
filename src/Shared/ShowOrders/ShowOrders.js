@@ -1,20 +1,34 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { Link } from "react-router-dom"
 import { Box } from '@mui/system';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import DeleteIcon from '@mui/icons-material/Delete';
+import PendingIcon from '@mui/icons-material/Pending';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../useContext/useAuth/useAuth';
 
-const ShowOrders = ({ order }) => {
+const ShowOrders = ({ order, handleDelete, handleUpdate }) => {
     const [product, setProduct] = useState({});
     const { role } = useAuth();
-    const { status, name, email, address, number, productId, OrderDate } = order;
+    const { _id, status, name, email, address, number, productId, OrderDate } = order;
+    const [newStatus, setNewStatus] = useState(status);
+
+    const handleStatus = () => {
+        if (newStatus) {
+            setNewStatus(false);
+            handleUpdate(_id, false);
+        } else {
+            setNewStatus(true);
+            handleUpdate(_id, true);
+        }
+    }
+
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/product/${productId}`)
+        axios.get(`https://tranquil-forest-55294.herokuapp.com/product/${productId}`)
             .then(res => {
                 setProduct(res.data);
             })
@@ -27,7 +41,7 @@ const ShowOrders = ({ order }) => {
                     <img width='100px' src={product.img} alt='product img' />
                     <Box style={{ padding: '10px' }}>
                         <Typography>
-                            Product Name: <Link to='/'>{product.name}</Link>
+                            Product Name: <Link to={`/buyproduct/${productId}`}>{product.name}</Link>
                         </Typography>
                         <Typography>
                             Order to: {name}
@@ -46,6 +60,20 @@ const ShowOrders = ({ order }) => {
                 </Box>
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
                     <Box style={{ padding: '10px' }}>
+                        <Box style={{ display: 'flex' }}>
+                            Order Status:
+                            {
+                                newStatus
+                                    ?
+                                    <Box style={{ display: 'flex', color: 'green' }}>
+                                        <FiberManualRecordIcon /> Shipped
+                                    </Box>
+                                    :
+                                    <Box style={{ display: 'flex', color: '#F4840C' }}>
+                                        <FiberManualRecordIcon /> Pending
+                                    </Box>
+                            }
+                        </Box>
                         <Typography>
                             Address: {address}
                         </Typography>
@@ -54,27 +82,29 @@ const ShowOrders = ({ order }) => {
                         </Typography>
                     </Box>
                     <Box style={{ padding: '10px' }}>
-                        <Box style={{ display: 'flex' }}>
-                            Order Status:
-                            {
-                                status === 'pending'
-                                    ?
-                                    <Box style={{ display: 'flex', color: '#F4840C' }}>
-                                        <FiberManualRecordIcon /> {status}
-                                    </Box>
-                                    :
-                                    <Box style={{ display: 'flex', color: 'green' }}>
-                                        <FiberManualRecordIcon /> {status}
-                                    </Box>
-                            }
 
-                        </Box>
-                        <Box style={{ display: 'flex' }}>
-                            <Typography>
-                                Delete
-                            </Typography>
-                            <DeleteIcon style={{ cursor: 'pointer' }} />
-                        </Box>
+                        <Button onClick={() => handleDelete(_id)} variant="outlined" style={{ display: 'flex' }}>
+                            Delete <DeleteIcon />
+                        </Button>
+                        {
+                            role.admin
+                            &&
+
+                            <>
+                                {
+                                    newStatus
+                                        ?
+                                        <Button onClick={handleStatus} variant="outlined" style={{ marginTop: '10px', display: 'flex' }}>
+                                            Make pending <PendingIcon />
+                                        </Button>
+                                        :
+                                        <Button onClick={handleStatus} variant="outlined" style={{ marginTop: '10px', display: 'flex' }}>
+                                            Make shipped <LocalShippingIcon />
+                                        </Button>
+
+                                }
+                            </>
+                        }
                     </Box>
                 </Box>
             </Box>

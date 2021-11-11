@@ -110,7 +110,7 @@ const useFirebase = () => {
     // Get Admin from database 
     useEffect(() => {
         setAdminLoading(true);
-        axios.get(`http://localhost:5000/user/${user.email}`)
+        axios.get(`https://tranquil-forest-55294.herokuapp.com/${user.email}`)
             .then(res => {
                 setRole(res.data);
                 setAdminLoading(false);
@@ -132,8 +132,7 @@ const useFirebase = () => {
 
     // Post user data to database 
     const sendUserDb = (user) => {
-        console.log(user)
-        axios.post('http://localhost:5000/user', user)
+        axios.post('https://tranquil-forest-55294.herokuapp.com/user', user)
             .then(function (response) {
                 console.log(response);
             })
@@ -144,7 +143,7 @@ const useFirebase = () => {
 
     // put user data to database 
     const sendGoogleUserDb = (user) => {
-        axios.put('http://localhost:5000/user', user)
+        axios.put('https://tranquil-forest-55294.herokuapp.com/user', user)
             .then(function (response) {
                 console.log(response);
             })

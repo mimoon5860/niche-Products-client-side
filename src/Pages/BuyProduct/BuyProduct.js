@@ -26,7 +26,7 @@ const BuyProduct = () => {
     }
 
     useEffect(() => {
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://tranquil-forest-55294.herokuapp.com/${id}`;
         try {
             axios.get(url)
                 .then(product => {
