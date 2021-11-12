@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import GetProducts from '../../../Hooks/GetProductsApi/GetProductsApi';
 import { Divider, Grid, TextareaAutosize } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';

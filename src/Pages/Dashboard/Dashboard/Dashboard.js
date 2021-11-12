@@ -31,6 +31,7 @@ import useAuth from '../../../useContext/useAuth/useAuth';
 import DashBoardContent from '../DashBoardContent/DashBoardContent';
 import AdminRoute from '../../../Shared/AdminRoute/AdminRoute';
 import AddReview from '../AddReview/AddReview';
+import DeleteReview from '../DeleteReview/DeleteReview';
 
 const drawerWidth = 200;
 
@@ -83,6 +84,14 @@ function Dashboard(props) {
                                         <AddBusinessIcon />
                                     </ListItemIcon>
                                     <ListItemText primary={"Manage Products"} />
+                                </ListItem>
+                            </Link>
+                            <Link style={linkStyle} to='/dashboard/deletereview'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <ManageAccountsIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Delete review"} />
                                 </ListItem>
                             </Link>
                             <Link style={linkStyle} to='/dashboard/admin'>
@@ -195,14 +204,14 @@ function Dashboard(props) {
                 <Toolbar />
                 <Routes>
                     <Route path="/*" element={<DashBoardContent />} />
+                    <Route path="/myorder" element={<MyOrders />} />
+                    <Route path="/payments" element={<Payments />} />
+                    <Route path="/review" element={<AddReview />} />
 
-                    <Route path="myorder" element={<MyOrders />} />
-                    <Route path="payments" element={<Payments />} />
-                    <Route path="review" element={<AddReview />} />
-
-                    <Route path="allorder" element={<AdminRoute><AllOrders /></AdminRoute>} />
-                    <Route path="manageproducts" element={<AdminRoute><ManageProducts /></AdminRoute>} />
-                    <Route path="admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
+                    <Route path="/deletereview" element={<AdminRoute><DeleteReview /></AdminRoute>} />
+                    <Route path="/allorder" element={<AdminRoute><AllOrders /></AdminRoute>} />
+                    <Route path="/manageproducts" element={<AdminRoute><ManageProducts /></AdminRoute>} />
+                    <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
                 </Routes>
             </Box>
         </Box>
