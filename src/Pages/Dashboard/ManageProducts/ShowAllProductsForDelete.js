@@ -13,7 +13,7 @@ const ShowAllProductsForDelete = ({ product, handleDelete }) => {
     }
     return (
         <Grid item xs={12} md={3}>
-            <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <Box style={{ height: '100%', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 41px 0px rgba(0,0,0,0.57)', display: 'flex', alignItems: 'center' }}>
                 <img width='100px' src={img} alt="Watch" />
                 <Box>
                     <p>{name}</p>

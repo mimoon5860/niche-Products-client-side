@@ -9,9 +9,10 @@ const ShowProducts = ({ product }) => {
     const card = {
         textAlign: 'center',
         backgroundColor: "#FFFFFF",
-        border: "1px solid black",
         padding: "10px",
-        minHeight: "100%"
+        minHeight: "100%",
+        borderRadius: '5px',
+        boxShadow: '0px 0px 41px 0px rgba(0,0,0,0.57)'
 
     }
     return (
@@ -31,7 +32,7 @@ const ShowProducts = ({ product }) => {
                         Price: ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </Typography>
                     <Link style={{ textDecoration: 'none' }} to={`/buyproduct/${_id}`}>
-                        <Button style={{ fontWeight: 'bold' }} variant="contained">Order Now</Button>
+                        <Button style={{ fontWeight: 'bold', margin: '10px 0' }} variant="contained">Order Now</Button>
                     </Link>
                 </Box>
             </Box>

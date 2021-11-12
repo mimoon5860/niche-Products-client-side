@@ -7,6 +7,7 @@ import Loading from '../../Shared/Loading/Loading';
 import Divider from '@mui/material/Divider';
 import Navigation from '../../Shared/Navigation/Navigation';
 import ModalForm from '../../Shared/ModalForm/ModalForm';
+import Footer from '../../Shared/Footer/Footer';
 
 const BuyProduct = () => {
     const [product, setProduct] = useState({});
@@ -98,6 +99,7 @@ const BuyProduct = () => {
                     </div>
             }
             <ModalForm open={open} handleClose={handleClose} id={_id} />
+            <Footer />
         </div >
 
     );

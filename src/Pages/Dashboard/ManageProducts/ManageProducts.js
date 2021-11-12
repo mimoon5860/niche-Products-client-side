@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import ShowAllProductsForDelete from './ShowAllProductsForDelete';
 import Loading from '../../../Shared/Loading/Loading';
+import { Container } from '@mui/material';
 
 const ManageProducts = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -59,9 +60,12 @@ const ManageProducts = () => {
     }
 
     return (
-        <div>
-            <h1 style={{ textAlign: "center" }}>Manage Products</h1>
-            <h3 style={{ margin: '0 20px' }}>Add a Product</h3>
+        <Container>
+            <h1 style={{ marginBottom: '20px', textAlign: "center" }}>Manage Products</h1>
+            <h2 style={{ margin: '0 20px' }}>
+                Add a Product
+                <Divider />
+            </h2>
             <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
@@ -122,9 +126,12 @@ const ManageProducts = () => {
                     <input style={button} type='submit' value='Add Watch' />
                 </form>
             </Box>
-            <Divider />
             <Box>
-                <h3>Delete a Product</h3>
+                <h2 style={{ margin: '20px 0' }}>
+                    Delete a Product
+                    <Divider />
+                </h2>
+
                 {
                     loading
                         ?
@@ -140,7 +147,7 @@ const ManageProducts = () => {
 
             </Box>
 
-        </div >
+        </Container >
     );
 };
 

@@ -26,7 +26,7 @@ const btnStyle = {
     color: "black"
 }
 
-const NavDrawer = () => {
+const DrawerComponent = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const { user, logOut } = useAuth();
     return (
@@ -113,4 +113,4 @@ const NavDrawer = () => {
     );
 };
 
-export default NavDrawer;
+export default DrawerComponent;

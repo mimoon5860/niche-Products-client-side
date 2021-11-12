@@ -1,4 +1,5 @@
-import { Grid } from '@mui/material';
+import { Container, Divider, Grid } from '@mui/material';
+import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ShowReviewsForDelete from './ShowReviewsForDelete';
@@ -35,18 +36,23 @@ const DeleteReview = () => {
 
     }
 
-
-
     return (
-        <div>
-            <h1>Delete Reviews</h1>
-            <Grid container spacing={2}>
-                {
-                    reviews.map(review => <ShowReviewsForDelete handleDelete={handleDelete} key={review._id} singleReview={review} />)
-                }
-            </Grid>
+        <Container>
+            <Box mb={{ xs: '0', md: '160px' }}>
+                <h1 style={{ margin: '25px 0' }}>
+                    Delete Reviews
+                    <Divider />
+                </h1>
 
-        </div>
+                <Grid container spacing={2}>
+                    {
+                        reviews.map(review => <ShowReviewsForDelete handleDelete={handleDelete} key={review._id} singleReview={review} />)
+                    }
+                </Grid>
+
+
+            </Box>
+        </Container>
     );
 };
 

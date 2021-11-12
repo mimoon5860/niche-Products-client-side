@@ -36,7 +36,7 @@ const ShowOrders = ({ order, handleDelete, handleUpdate }) => {
 
     return (
         <Grid item xs={12} md={6}>
-            <Box style={{ padding: '10px' }}>
+            <Box style={{ padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 41px 0px rgba(0,0,0,0.57)' }}>
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
                     <img width='100px' src={product.img} alt='product img' />
                     <Box style={{ padding: '10px' }}>

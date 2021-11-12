@@ -15,7 +15,7 @@ const ShowReviewsForDelete = ({ singleReview, handleDelete }) => {
 
     return (
         <Grid item xs={12} md={3}>
-            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box style={{ height: '100%', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 41px 0px rgba(0,0,0,0.57)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
                     <Rating name="read-only" value={rating} readOnly />
                     <h5>Reviewer Name: {name}</h5>

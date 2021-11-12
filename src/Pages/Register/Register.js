@@ -9,6 +9,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import { Link, useLocation } from 'react-router-dom';
 import useAuth from '../../useContext/useAuth/useAuth';
 import Loading from '../../Shared/Loading/Loading';
+import Footer from '../../Shared/Footer/Footer';
 
 const Register = () => {
     const { register, handleSubmit } = useForm();
@@ -19,7 +20,12 @@ const Register = () => {
     const from = location.state?.from?.pathname || "/";
 
     const onSubmit = (data) => {
-        emailSignUp(data.email, data.password, data.name, from, setVerifyLoading);
+        if (data.password === data.password2) {
+            emailSignUp(data.email, data.password, data.name, from, setVerifyLoading);
+            setError('')
+        } else {
+            setError("Both Password Doesn't match")
+        }
     };
 
     const inputField = {
@@ -29,7 +35,7 @@ const Register = () => {
     const form = {
         boxShadow: '0px 0px 5px 3px rgba(0,0,0,0.75)',
         borderRadius: '5px',
-        marginTop: '4rem',
+        margin: '4rem 0',
         padding: '2rem'
     }
     const button = {
@@ -52,6 +58,7 @@ const Register = () => {
                             <TextField required style={inputField} type='text' {...register("name")} id="standard-basic" label="Name" variant="standard" />
                             <TextField required style={inputField} type='email' {...register("email")} id="standard-basic" label="Email" variant="standard" />
                             <TextField required style={inputField} type='password' {...register("password")} id="standard-basic" label="Password" variant="standard" />
+                            <TextField required style={inputField} type='password' {...register("password2")} id="standard-basic" label="Re enter your password" variant="standard" />
                             <br />
                             {
                                 verifyLoading ? <Loading />
@@ -71,6 +78,7 @@ const Register = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer />
         </>
     );
 };

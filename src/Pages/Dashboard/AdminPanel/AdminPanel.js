@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from '@mui/material';
+import { Divider, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -28,8 +28,8 @@ const AdminPanel = () => {
     const form = {
         boxShadow: '0px 0px 5px 3px rgba(0,0,0,0.75)',
         borderRadius: '5px',
-        marginTop: '4rem',
-        padding: '2rem'
+        padding: '2rem',
+        margin: '0 auto'
     }
     const button = {
         padding: '10px 25px',
@@ -43,6 +43,10 @@ const AdminPanel = () => {
         <Box>
             <Typography variant='h4'>
                 Hi, {user.displayName}
+            </Typography>
+            <Divider />
+            <Typography style={{ textAlign: 'center', margin: '3rem 0' }} variant='h6'>
+                You can Add any user to admin from here
             </Typography>
             <Grid container spacing={2}>
                 <Grid sx={{ mx: 'auto' }} style={form} item xs={12} md={4}>

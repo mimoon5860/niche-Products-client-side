@@ -48,54 +48,55 @@ const Navigation = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
-        <AppBar position="static">
+        <AppBar style={{ background: '#050607' }} position="static">
             <Container>
                 <CssBaseline />
                 <Toolbar>
                     <Typography style={{ fontFamily: "'Satisfy', cursive", fontWeight: 'bold' }} variant="h4" className={classes.logo}>
                         Time Style
                     </Typography>
-                    {isMobile ? (
-                        <DrawerComponent />
-                    ) : (
-                        <div className={classes.navlinks}>
-                            {
-                                user.email
-                                &&
-                                <Typography>Hi, {user.displayName}</Typography>
-                            }
-                            <Link to="/" className={classes.link}>
-                                Home
-                            </Link>
-                            <Link to="/allproducts" className={classes.link}>
-                                All Products
-                            </Link>
-                            {
-                                user.email
-                                &&
-                                <Link to="/dashboard" className={classes.link}>
-                                    Dashboard
+                    {
+                        isMobile ? (
+                            <DrawerComponent />
+                        ) : (
+                            <div className={classes.navlinks}>
+                                {
+                                    user.email
+                                    &&
+                                    <Typography>Hi, {user.displayName}</Typography>
+                                }
+                                <Link to="/" className={classes.link}>
+                                    Home
                                 </Link>
-                            }
+                                <Link to="/allproducts" className={classes.link}>
+                                    All Products
+                                </Link>
+                                {
+                                    user.email
+                                    &&
+                                    <Link to="/dashboard" className={classes.link}>
+                                        Dashboard
+                                    </Link>
+                                }
 
-                            {
-                                user.email
-                                    ?
-                                    <button style={{ display: 'flex', alignItems: 'center' }} className={classes.link} onClick={logOut}><LogoutIcon /> Logout</button>
-                                    :
+                                {
+                                    user.email
+                                        ?
+                                        <button style={{ display: 'flex', alignItems: 'center' }} className={classes.link} onClick={logOut}><LogoutIcon /> Logout</button>
+                                        :
 
-                                    <>
-                                        <Link style={{ display: 'flex', alignItems: 'center' }} to="/register" className={classes.link}>
-                                            <VpnKeyIcon /> Register
-                                        </Link>
-                                        <Link style={{ display: 'flex', alignItems: 'center' }} to="/login" className={classes.link}>
-                                            <LoginIcon /> Login
-                                        </Link>
-                                    </>
-                            }
+                                        <>
+                                            <Link style={{ display: 'flex', alignItems: 'center' }} to="/register" className={classes.link}>
+                                                <VpnKeyIcon /> Register
+                                            </Link>
+                                            <Link style={{ display: 'flex', alignItems: 'center' }} to="/login" className={classes.link}>
+                                                <LoginIcon /> Login
+                                            </Link>
+                                        </>
+                                }
 
-                        </div>
-                    )}
+                            </div>
+                        )}
                 </Toolbar>
             </Container>
         </AppBar >

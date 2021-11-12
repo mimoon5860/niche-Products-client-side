@@ -9,6 +9,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import { Link, useLocation } from 'react-router-dom';
 import useAuth from '../../useContext/useAuth/useAuth';
 import Loading from '../../Shared/Loading/Loading';
+import Footer from '../../Shared/Footer/Footer';
 
 
 
@@ -31,7 +32,7 @@ const Login = () => {
     const form = {
         boxShadow: '0px 0px 5px 3px rgba(0,0,0,0.75)',
         borderRadius: '5px',
-        marginTop: '4rem',
+        margin: '6rem 0',
         padding: '2rem'
     }
     const button = {
@@ -77,6 +78,7 @@ const Login = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer />
         </>
     );
 };

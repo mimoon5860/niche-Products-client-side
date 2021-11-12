@@ -8,10 +8,10 @@ const Banner = () => {
     const bannerBg = {
         background: `url(${bgCover})`,
         backgroundSize: 'cover',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
         backgroundBlendMode: 'darken, luminosity',
         color: 'white',
-        marginTop: '8px'
+        paddingTop: '5rem'
 
     }
 

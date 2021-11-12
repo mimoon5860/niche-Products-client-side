@@ -1,4 +1,4 @@
-import { Container, Grid } from '@material-ui/core';
+import { Container, Divider, Grid } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ShowReview from './ShowReview';
@@ -15,7 +15,9 @@ const Reviews = () => {
     }, [])
     return (
         <div style={{ marginTop: '2rem' }}>
-            <h1 style={{ textAlign: 'center' }}>Reviews</h1>
+            <h1 style={{ textAlign: 'center', margin: '20px' }}>Reviews
+                <Divider />
+            </h1>
             <Container>
                 <Grid container spacing={2}>
                     {

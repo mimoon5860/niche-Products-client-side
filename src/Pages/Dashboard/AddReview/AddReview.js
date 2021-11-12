@@ -38,7 +38,7 @@ const AddReview = () => {
     }
 
     return (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
             <h1 >Add a Review</h1>
             <br />
             <form onSubmit={onSubmit}>
@@ -46,8 +46,8 @@ const AddReview = () => {
                     required
                     aria-label="minimum height"
                     minRows={8}
+                    style={{ width: '220px' }}
                     placeholder="Write a review"
-                    style={{ width: 400 }}
                     onChange={(e) => {
                         setReview(e.target.value);
                     }}
