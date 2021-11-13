@@ -107,7 +107,7 @@ const ManageProducts = () => {
                             aria-label="minimum height"
                             minRows={6}
                             placeholder="Watch Details"
-                            style={{ width: '60%' }}
+                            style={{ width: '70%' }}
                         />
                     </FormControl>
 

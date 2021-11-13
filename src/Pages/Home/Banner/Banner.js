@@ -22,7 +22,8 @@ const Banner = () => {
         color: 'white',
         fontSize: '2rem',
         borderRadius: '5px',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        boxShadow: '0px 0px 13px 3px rgba(255,255,255,0.86)'
     }
     return (
         <div style={bannerBg}>

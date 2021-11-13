@@ -1,5 +1,6 @@
 import { Grid } from '@material-ui/core';
-import { Container, Divider } from '@mui/material';
+import { Divider } from '@mui/material';
+import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ShowOrders from '../../../Shared/ShowOrders/ShowOrders';
@@ -40,17 +41,17 @@ const AllOrders = () => {
 
 
     return (
-        <Container>
-            <h1 style={{ textAlign: 'center' }}>Manage Orders</h1>
-            <Divider />
-            <div style={{ margin: '20px 0' }}>
-                <Grid container spacing={2}>
-                    {
-                        orders.map(order => <ShowOrders handleUpdate={handleUpdate} handleDelete={handleDelete} key={order._id} order={order} />)
-                    }
-                </Grid>
-            </div>
-        </Container>
+        <Box>
+            <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>
+                Manage Orders
+                <Divider />
+            </h1>
+            <Grid container spacing={2}>
+                {
+                    orders.map(order => <ShowOrders handleUpdate={handleUpdate} handleDelete={handleDelete} key={order._id} order={order} />)
+                }
+            </Grid>
+        </Box>
     );
 };
 

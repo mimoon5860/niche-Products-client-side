@@ -1,5 +1,4 @@
 import { Button, Grid, Rating } from '@mui/material';
-import { Box } from '@mui/system';
 import React from 'react';
 
 const ShowReviewsForDelete = ({ singleReview, handleDelete }) => {
@@ -14,17 +13,19 @@ const ShowReviewsForDelete = ({ singleReview, handleDelete }) => {
     }
 
     return (
-        <Grid item xs={12} md={3}>
-            <Box style={{ height: '100%', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 41px 0px rgba(0,0,0,0.57)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Box>
-                    <Rating name="read-only" value={rating} readOnly />
-                    <h5>Reviewer Name: {name}</h5>
-                    <small>{review}</small>
-                </Box>
-                <Box>
-                    <Button onClick={() => handleDelete(_id)} variant="outlined" style={button}>Delete</Button>
-                </Box>
-            </Box>
+        <Grid item xs={12} md={6} lg={4}>
+            <div style={{ height: '100%', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 41px 0px rgba(0,0,0,0.57)' }}>
+                <Grid container spacing={2} >
+                    <Grid item xs={8}>
+                        <Rating name="read-only" value={rating} readOnly />
+                        <h5>Reviewer Name: {name}</h5>
+                        <small>{review}</small>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Button onClick={() => handleDelete(_id)} variant="outlined" style={button}>Delete</Button>
+                    </Grid>
+                </Grid>
+            </div>
 
         </Grid>
     );

@@ -18,7 +18,7 @@ const Login = () => {
     const { user, googleSignIn, error, loginWithEmail, setError } = useAuth();
     const [verifyLoading, setVerifyLoading] = useState(false);
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/dashboard";
 
     const onSubmit = (data) => {
         setVerifyLoading(true);
