@@ -14,7 +14,7 @@ const DashBoardContent = () => {
             <Container>
                 <Box sx={{ m: 2 }}>
                     <h3>Your Email: {user.email}</h3>
-                    <Box style={{ margin: '0 auto' }}>
+                    <Box sx={{ mb: 4 }}>
                         {
                             role.admin ?
                                 <div style={{ margin: '10px', padding: '5px' }}>
