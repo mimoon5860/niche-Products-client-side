@@ -10,6 +10,7 @@ import ReviewsIcon from '@mui/icons-material/Reviews';
 import List from '@mui/material/List';
 import PaymentIcon from '@mui/icons-material/Payment';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import RateReviewIcon from '@mui/icons-material/RateReview';
 import PropTypes from 'prop-types';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -90,7 +91,7 @@ function Dashboard(props) {
                             <Link style={linkStyle} to='/dashboard/deletereview'>
                                 <ListItem button >
                                     <ListItemIcon>
-                                        <ManageAccountsIcon />
+                                        <RateReviewIcon />
                                     </ListItemIcon>
                                     <ListItemText primary={"Delete review"} />
                                 </ListItem>
